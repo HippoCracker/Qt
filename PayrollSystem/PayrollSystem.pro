@@ -25,7 +25,10 @@ SOURCES += main.cpp\
     role.cpp \
     employeerole.cpp \
     adminrole.cpp \
-    adminwindow.cpp
+    adminwindow.cpp \
+    viewemployeedialog.cpp \
+    exportdirectorydialog.cpp \
+    employeewindow.cpp
 
 HEADERS  += mainwindow.h \
     person.h \
@@ -39,7 +42,13 @@ HEADERS  += mainwindow.h \
     role.h \
     employeerole.h \
     adminrole.h \
-    adminwindow.h
+    adminwindow.h \
+    viewemployeedialog.h \
+    exportdirectorydialog.h \
+    employeewindow.h
 
 FORMS    += mainwindow.ui \
-    adminwindow.ui
+    adminwindow.ui \
+    viewemployeedialog.ui \
+    exportdirectorydialog.ui \
+    employeewindow.ui
