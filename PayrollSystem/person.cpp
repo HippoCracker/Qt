@@ -15,22 +15,22 @@ int Person::getId()
     return m_id;
 }
 
-void Person::setFirstName(string fname)
+void Person::setFirstName(QString fname)
 {
     m_firstName = fname;
 }
 
-string Person::getFirstName()
+QString Person::getFirstName()
 {
     return m_firstName;
 }
 
-void Person::setLastName(string lname)
+void Person::setLastName(QString lname)
 {
     m_lastName = lname;
 }
 
-string Person::getLastName()
+QString Person::getLastName()
 {
     return m_lastName;
 }
@@ -45,11 +45,11 @@ int Person::getAge()
     return m_age;
 }
 
-void Person::setPhoneNum(string phoneNum)
+void Person::setPhoneNum(QString phoneNum)
 {
     m_phoneNum = phoneNum;
 }
 
-string Person::getPhoneNum() {
+QString Person::getPhoneNum() {
     return m_phoneNum;
 }

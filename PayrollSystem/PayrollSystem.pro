@@ -11,7 +11,6 @@ greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 TARGET = PayrollSystem
 TEMPLATE = app
 
-
 SOURCES += main.cpp\
         mainwindow.cpp \
     person.cpp \
@@ -28,7 +27,8 @@ SOURCES += main.cpp\
     adminwindow.cpp \
     viewemployeedialog.cpp \
     exportdirectorydialog.cpp \
-    employeewindow.cpp
+    employeewindow.cpp \
+    logindialog.cpp
 
 HEADERS  += mainwindow.h \
     person.h \
@@ -45,10 +45,12 @@ HEADERS  += mainwindow.h \
     adminwindow.h \
     viewemployeedialog.h \
     exportdirectorydialog.h \
-    employeewindow.h
+    employeewindow.h \
+    logindialog.h
 
 FORMS    += mainwindow.ui \
     adminwindow.ui \
     viewemployeedialog.ui \
     exportdirectorydialog.ui \
-    employeewindow.ui
+    employeewindow.ui \
+    logindialog.ui

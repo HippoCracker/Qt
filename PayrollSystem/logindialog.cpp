@@ -1,46 +1,41 @@
-#include "mainwindow.h"
-#include "ui_mainwindow.h"
-#include "adminwindow.h"
+#include "logindialog.h"
+#include "ui_logindialog.h"
 
-MainWindow::MainWindow(QWidget *parent) :
-    QMainWindow(parent),
-    ui(new Ui::MainWindow)
+LoginDialog::LoginDialog(QWidget *parent) :
+    QDialog(parent),
+    ui(new Ui::LoginDialog)
 {
     ui->setupUi(this);
+    ui->errorLabel->hide();
 
     adminUsername = "admin";
     adminPassword = "admin";
-    employeeDirectory = new EmployeeDirectory();
 
     connect(ui->loginBtn, SIGNAL(clicked(bool)), this, SLOT(loginBtnClicked()));
+
+
 }
 
-MainWindow::~MainWindow()
+LoginDialog::~LoginDialog()
 {
     delete ui;
 }
 
-void MainWindow::loginBtnClicked()
+void LoginDialog::loginBtnClicked()
 {
     QString username = ui->usernameTxt->text();
     QString password = ui->passwordTxt->text();
     bool isValid = validate(username, password);
     if (isValid) {
-        displayAdminWorkWindow();
+        QDialog::accept();
     } else {
-
+        ui->errorLabel->show();
     }
 }
 
-bool MainWindow::validate(QString username, QString password)
+bool LoginDialog::validate(QString username, QString password)
 {
     bool isEqual = (username == adminUsername) &&
                    (password == adminPassword);
     return isEqual;
-}
-
-void MainWindow::displayAdminWorkWindow()
-{
-    AdminWindow adminWindow;
-    adminWindow.show();
 }

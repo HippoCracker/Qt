@@ -30,12 +30,12 @@ void Employee::setSalaryPerUnit(double salary)
     m_salaryPerUnit = salary;
 }
 
-Employee::PayPeriod* Employee::getPayPeriod()
+QString Employee::getPayPeriod()
 {
     return m_payPeriod;
 }
 
-void Employee::setPayPeriod(Employee::PayPeriod* payPeriod)
+void Employee::setPayPeriod(QString payPeriod)
 {
     m_payPeriod = payPeriod;
 }
@@ -58,4 +58,9 @@ double Employee::getWorkUnits()
 void Employee::setWorkUnits(double workUnits)
 {
     m_workUnits = workUnits;
+}
+
+PayrollDirectory* Employee::getPayrollDirectory()
+{
+    return payrollDirectory;
 }

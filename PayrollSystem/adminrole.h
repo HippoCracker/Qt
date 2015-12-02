@@ -11,6 +11,7 @@ public:
     ~AdminRole();
 
     QMainWindow* createWorkArea();
+    QString toString();
 };
 
 #endif // ADMINROLE_H

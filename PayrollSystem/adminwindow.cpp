@@ -1,14 +1,102 @@
 #include "adminwindow.h"
 #include "ui_adminwindow.h"
+#include "viewemployeedialog.h"
+#include "employeerole.h"
+#include "employee.h"
 
 AdminWindow::AdminWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::AdminWindow)
 {
     ui->setupUi(this);
+    employeeDirectory = new EmployeeDirectory();
+
+    Person *person = new Person();
+    person->setFirstName("Zesheng");
+    person->setLastName("Zong");
+    person->setAge(20);
+    person->setPhoneNum("111-1111");
+
+    Employee *employee = employeeDirectory->createEmployee();
+    employee->setRole(new EmployeeRole());
+    employee->setWorkUnits(10);
+    employee->setSalaryPerUnit(20);
+    employee->setPayPeriod("month");
+    employee->setPerson(person);
+
+    PayrollDirectory *payrollDirectory = employee->getPayrollDirectory();
+    Payroll *payroll = payrollDirectory->createPayroll();
+    payroll->setStartDate(new QDate(2012, 7, 6));
+    payroll->setEndDate(new QDate(2015, 10, 2));
+    payroll->setWorkUnits(100);
+    payroll->setSalaryPerUnit(50);
+
+    ui->errorLabel->hide();
+
+    connect(ui->viewBtn, SIGNAL(clicked(bool)), this, SLOT(viewBtnClicked()));
+    connect(ui->loadBtn, SIGNAL(clicked(bool)), this, SLOT(loadBtnClicked()));
+    connect(ui->refreshBtn, SIGNAL(clicked(bool)), this, SLOT(refreshBtnClicked()));
+    connect(ui->exportBtn, SIGNAL(clicked(bool)), this, SLOT(exportBtnClicked()));
+
+    refreshTable();
+}
+
+void AdminWindow::refreshTable()
+{
+    vector<Employee*> *employeeList = employeeDirectory->getEmployeeList();
+    for (int i = 0; i < employeeList->size(); i++) {
+        Employee *employee = employeeList->at(i);
+        ui->employeeTable->insertRow(i);
+        QTableWidgetItem *id = new QTableWidgetItem(QString::number(employee->getPerson()->getId()));
+        QTableWidgetItem *fname = new QTableWidgetItem(employee->getPerson()->getFirstName());
+        QTableWidgetItem *lname = new QTableWidgetItem(employee->getPerson()->getLastName());
+        QTableWidgetItem *payPeriod = new QTableWidgetItem(employee->getPayPeriod());
+        QTableWidgetItem *role = new QTableWidgetItem(employee->getRole()->toString());
+
+        ui->employeeTable->setItem(i, 0, id);
+        ui->employeeTable->setItem(i, 1, fname);
+        ui->employeeTable->setItem(i, 2, lname);
+        ui->employeeTable->setItem(i, 3, payPeriod);
+        ui->employeeTable->setItem(i, 4, role);
+    }
 }
 
 AdminWindow::~AdminWindow()
 {
     delete ui;
+}
+
+void AdminWindow::viewBtnClicked()
+{
+    QItemSelectionModel *selectModel = ui->employeeTable->selectionModel();
+
+    if (selectModel->hasSelection()) {
+        QModelIndexList indexList = selectModel->selectedRows();
+        QTableWidgetItem *item = ui->employeeTable->item(indexList.at(0).row(), 0);
+
+        int id = item->text().toInt();
+
+        Employee *employee = employeeDirectory->findEmployeeById(id);
+
+        ViewEmployeeDialog viewEmployeeDialog(0, employee);
+        viewEmployeeDialog.exec();
+    } else {
+        ui->errorLabel->setText("Please select one employee.");
+        ui->errorLabel->show();
+    }
+}
+
+void AdminWindow::loadBtnClicked()
+{
+
+}
+
+void AdminWindow::refreshBtnClicked()
+{
+    refreshTable();
+}
+
+void AdminWindow::exportBtnClicked()
+{
+
 }

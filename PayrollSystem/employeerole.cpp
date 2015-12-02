@@ -14,3 +14,8 @@ QMainWindow* EmployeeRole::createWorkArea()
 {
     return NULL;
 }
+
+QString EmployeeRole::toString()
+{
+    return "Employee Role";
+}

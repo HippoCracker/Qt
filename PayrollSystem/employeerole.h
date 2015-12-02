@@ -11,6 +11,7 @@ public:
     ~EmployeeRole();
 
     QMainWindow* createWorkArea();
+    QString toString();
 };
 
 #endif // EMPLOYEEROLE_H

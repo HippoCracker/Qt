@@ -11,22 +11,14 @@ public:
     Employee();
     ~Employee();
 
-//    enum EmployeeRole {
-//        STUDENT, TEACHER, EXECUTIVE, STAFF, VOLUNTEER
-//    };
-
-    enum PayPeriod {
-        HOUR, DAY, WEEK, BIWEEK, MONTH, YEAR
-    };
-
     Person* getPerson();
     void setPerson(Person* person);
 
     double getSalaryPerUnit();
     void setSalaryPerUnit(double salary);
 
-    PayPeriod* getPayPeriod();
-    void setPayPeriod(PayPeriod* payPeriod);
+    QString getPayPeriod();
+    void setPayPeriod(QString payPeriod);
 
     Role* getRole();
     void setRole(Role* role);
@@ -34,11 +26,13 @@ public:
     double getWorkUnits();
     void setWorkUnits(double workUnits);
 
+    PayrollDirectory* getPayrollDirectory();
+
 private:
     Person* m_person;
     double m_salaryPerUnit;
     double m_workUnits;
-    PayPeriod* m_payPeriod;
+    QString m_payPeriod;
     Role* m_role;
     PayrollDirectory *payrollDirectory;
 };

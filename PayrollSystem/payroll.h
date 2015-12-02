@@ -9,11 +9,11 @@ public:
     Payroll();
     ~Payroll();
 
-    QDateTime getStartDate();
-    void setStartDate(QDateTime date);
+    QDate* getStartDate();
+    void setStartDate(QDate* date);
 
-    QDateTime getEndDate();
-    void setEndDate(QDateTime date);
+    QDate* getEndDate();
+    void setEndDate(QDate* date);
 
     double getWorkUnits();
     void setWorkUnits(double workUnits);
@@ -24,8 +24,8 @@ public:
     double getTotalSalary();
 
 private:
-    QDateTime m_startDate;
-    QDateTime m_endDate;
+    QDate* m_startDate;
+    QDate* m_endDate;
     double m_workUnits;
     double m_salaryPerUnit;
     double m_totalSalary;

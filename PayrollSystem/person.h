@@ -1,7 +1,7 @@
 #ifndef PERSON_H
 #define PERSON_H
 
-#include <string>
+#include <QString>
 using namespace std;
 
 class Person
@@ -14,25 +14,25 @@ public:
 
     int getId();
 
-    void setFirstName(string fname);
-    string getFirstName();
+    void setFirstName(QString fname);
+    QString getFirstName();
 
-    void setLastName(string lname);
-    string getLastName();
+    void setLastName(QString lname);
+    QString getLastName();
 
     void setAge(int age);
     int getAge();
 
-    void setPhoneNum(string phoneNum);
-    string getPhoneNum();
+    void setPhoneNum(QString phoneNum);
+    QString getPhoneNum();
 
 
 private:
     int m_id;
-    string m_firstName;
-    string m_lastName;
+    QString m_firstName;
+    QString m_lastName;
     int m_age;
-    string m_phoneNum;
+    QString m_phoneNum;
 };
 
 #endif // PERSON_H

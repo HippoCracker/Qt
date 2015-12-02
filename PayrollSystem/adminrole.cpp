@@ -14,3 +14,8 @@ QMainWindow* AdminRole::createWorkArea()
 {
     return NULL;
 }
+
+QString AdminRole::toString()
+{
+    return "Admin Role";
+}

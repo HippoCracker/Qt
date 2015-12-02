@@ -10,22 +10,22 @@ Payroll::~Payroll()
 
 }
 
-QDateTime Payroll::getStartDate()
+QDate* Payroll::getStartDate()
 {
     return m_startDate;
 }
 
-void Payroll::setStartDate(QDateTime date)
+void Payroll::setStartDate(QDate* date)
 {
     m_startDate = date;
 }
 
-QDateTime Payroll::getEndDate()
+QDate* Payroll::getEndDate()
 {
     return m_endDate;
 }
 
-void Payroll::setEndDate(QDateTime date)
+void Payroll::setEndDate(QDate* date)
 {
     m_endDate = date;
 }

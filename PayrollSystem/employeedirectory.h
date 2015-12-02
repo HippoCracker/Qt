@@ -13,7 +13,9 @@ public:
     vector<Employee*>* getEmployeeList();
 
     Employee* createEmployee();
+    Employee* findEmployeeById(int id);
     void deleteEmployee(Employee *employee);
+
 
 private:
     vector<Employee*> *employeeList;
