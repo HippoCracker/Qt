@@ -1,7 +1,6 @@
 #ifndef STUDENT_H
 #define STUDENT_H
 
-#include <string>
 #include "person.h"
 
 using namespace std;
@@ -13,15 +12,18 @@ public:
     Student();
     ~Student();
 
-    string getCollege();
-    void setCollege(string college);
+    QString getCollege();
+    void setCollege(QString college);
 
-    string getMajor();
-    void setMajor(string major);
+    QString getMajor();
+    void setMajor(QString major);
+
+    QString getRole();
 
 private:
-    string m_college;
-    string m_major;
+    QString m_college;
+    QString m_major;
+    QString m_role;
 
 };
 

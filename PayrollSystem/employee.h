@@ -20,8 +20,8 @@ public:
     QString getPayPeriod();
     void setPayPeriod(QString payPeriod);
 
-    Role* getRole();
-    void setRole(Role* role);
+    QString getDepartment();
+    void setDepartment(QString department);
 
     double getWorkUnits();
     void setWorkUnits(double workUnits);
@@ -33,7 +33,7 @@ private:
     double m_salaryPerUnit;
     double m_workUnits;
     QString m_payPeriod;
-    Role* m_role;
+    QString m_department;
     PayrollDirectory *payrollDirectory;
 };
 

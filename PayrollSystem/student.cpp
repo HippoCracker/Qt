@@ -1,6 +1,7 @@
 #include "student.h"
 
-Student::Student()
+Student::Student():
+    m_role("Student")
 {
 
 }
@@ -10,22 +11,27 @@ Student::~Student()
 
 }
 
-string Student::getCollege()
+QString Student::getRole()
+{
+    return m_role;
+}
+
+QString Student::getCollege()
 {
     return m_college;
 }
 
-void Student::setCollege(string college)
+void Student::setCollege(QString college)
 {
     m_college = college;
 }
 
-string Student::getMajor()
+QString Student::getMajor()
 {
     return m_major;
 }
 
-void Student::setMajor(string major)
+void Student::setMajor(QString major)
 {
     m_major = major;
 }

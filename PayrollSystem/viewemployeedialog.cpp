@@ -12,7 +12,7 @@ ViewEmployeeDialog::ViewEmployeeDialog(QWidget *parent, Employee *e) :
     ui->empNameLabel->setText(employee->getPerson()->getFirstName() + " " +
                               employee->getPerson()->getLastName());
     ui->payPeriodLabel->setText(employee->getPayPeriod());
-    ui->roleLabel->setText(employee->getRole()->toString());
+    ui->roleLabel->setText(employee->getPerson()->getRole());
 
     QString salaryPerUnit = QString::number(employee->getSalaryPerUnit());
     ui->salaryPerUnitTxt->setText(salaryPerUnit);
@@ -38,16 +38,15 @@ ViewEmployeeDialog::~ViewEmployeeDialog()
 
 void ViewEmployeeDialog::addBtnClicked()
 {
-    QString start = ui->startDateTxt->text();
-    QString end = ui->endDateTxt->text();
     QString workUnits = ui->workUnitsTxt->text();
     QString salaryPerUnit = ui->salaryPerUnitTxt->text();
 
 
     PayrollDirectory *payrollDirectory = employee->getPayrollDirectory();
     Payroll *payroll = payrollDirectory->createPayroll();
-    payroll->setStartDate(&startDate);
-    payroll->setEndDate(&endDate);
+
+    payroll->setStartDate(startDate);
+    payroll->setEndDate(endDate);
     payroll->setWorkUnits(workUnits.toDouble());
     payroll->setSalaryPerUnit(salaryPerUnit.toDouble());
 
@@ -57,6 +56,7 @@ void ViewEmployeeDialog::addBtnClicked()
 void ViewEmployeeDialog::refreshTable()
 {
     ui->empPayrollTable->clear();
+    ui->empPayrollTable->setRowCount(0);
 
     PayrollDirectory *payrollDirectory = employee->getPayrollDirectory();
     vector<Payroll*> *payrollList = payrollDirectory->getPayrollList();
@@ -64,8 +64,8 @@ void ViewEmployeeDialog::refreshTable()
     for (int i = 0; i < payrollList->size(); i++) {
         Payroll* payroll = payrollList->at(i);
         ui->empPayrollTable->insertRow(i);
-        QTableWidgetItem *startDate = new QTableWidgetItem(payroll->getStartDate()->toString());
-        QTableWidgetItem *endDate = new QTableWidgetItem(payroll->getEndDate()->toString());
+        QTableWidgetItem *startDate = new QTableWidgetItem(payroll->getStartDate().toString());
+        QTableWidgetItem *endDate = new QTableWidgetItem(payroll->getEndDate().toString());
         QTableWidgetItem *workUnits = new QTableWidgetItem(QString::number(payroll->getWorkUnits()));
         QTableWidgetItem *salaryPerUnit = new QTableWidgetItem(QString::number(payroll->getSalaryPerUnit()));
         QTableWidgetItem *totalSalary = new QTableWidgetItem(QString::number(payroll->getTotalSalary()));

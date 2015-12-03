@@ -1,7 +1,6 @@
 #ifndef TEACHER_H
 #define TEACHER_H
 
-#include <string>
 #include "person.h"
 
 using namespace std;
@@ -12,15 +11,19 @@ public:
     Teacher();
     ~Teacher();
 
-    string getCollege();
-    void setCollege(string college);
+    QString getCollege();
+    void setCollege(QString college);
 
-    string getDepartment();
-    void setDepartment(string department);
+    QString getDepartment();
+    void setDepartment(QString department);
+
+    QString getRole();
 
 private:
-    string m_college;
-    string m_department;
+    QString m_college;
+    QString m_department;
+    QString m_role;
+
 };
 
 #endif // TEACHER_H

@@ -1,8 +1,10 @@
 #include "person.h"
 
+int Person::count = 0;
+
 Person::Person()
 {
-
+    m_id = count++;
 }
 
 Person::~Person()

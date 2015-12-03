@@ -129,24 +129,6 @@
      </item>
     </layout>
    </widget>
-   <widget class="QLabel" name="banner_2">
-    <property name="geometry">
-     <rect>
-      <x>340</x>
-      <y>310</y>
-      <width>291</width>
-      <height>51</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <pointsize>24</pointsize>
-     </font>
-    </property>
-    <property name="text">
-     <string>Welcome to Payroll System</string>
-    </property>
-   </widget>
    <widget class="QLineEdit" name="usernameTxt_2">
     <property name="geometry">
      <rect>

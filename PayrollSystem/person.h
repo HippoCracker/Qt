@@ -10,7 +10,7 @@ public:
     Person();
     ~Person();
 
-//    virtual createWorkArea() = 0;
+    virtual QString getRole() = 0;
 
     int getId();
 
@@ -28,6 +28,8 @@ public:
 
 
 private:
+    static int count;
+
     int m_id;
     QString m_firstName;
     QString m_lastName;

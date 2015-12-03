@@ -1,6 +1,7 @@
 #include "teacher.h"
 
-Teacher::Teacher()
+Teacher::Teacher():
+    m_role("Teacher")
 {
 
 }
@@ -10,22 +11,27 @@ Teacher::~Teacher()
 
 }
 
-string Teacher::getCollege()
+QString Teacher::getCollege()
 {
     return m_college;
 }
 
-void Teacher::setCollege(string college)
+void Teacher::setCollege(QString college)
 {
     m_college = college;
 }
 
-string Teacher::getDepartment()
+QString Teacher::getDepartment()
 {
     return m_department;
 }
 
-void Teacher::setDepartment(string department)
+void Teacher::setDepartment(QString department)
 {
     m_department = department;
+}
+
+QString Teacher::getRole()
+{
+    return m_role;
 }

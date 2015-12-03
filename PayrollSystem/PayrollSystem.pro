@@ -28,7 +28,12 @@ SOURCES += main.cpp\
     viewemployeedialog.cpp \
     exportdirectorydialog.cpp \
     employeewindow.cpp \
-    logindialog.cpp
+    logindialog.cpp \
+    staff.cpp \
+    executive.cpp \
+    volunteer.cpp \
+    personfactory.cpp \
+    addempdialog.cpp
 
 HEADERS  += mainwindow.h \
     person.h \
@@ -46,11 +51,17 @@ HEADERS  += mainwindow.h \
     viewemployeedialog.h \
     exportdirectorydialog.h \
     employeewindow.h \
-    logindialog.h
+    logindialog.h \
+    staff.h \
+    executive.h \
+    volunteer.h \
+    personfactory.h \
+    addempdialog.h
 
 FORMS    += mainwindow.ui \
     adminwindow.ui \
     viewemployeedialog.ui \
     exportdirectorydialog.ui \
     employeewindow.ui \
-    logindialog.ui
+    logindialog.ui \
+    addempdialog.ui

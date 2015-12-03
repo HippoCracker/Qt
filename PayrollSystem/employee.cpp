@@ -7,7 +7,8 @@ Employee::Employee()
 
 Employee::~Employee()
 {
-
+    delete m_person;
+    delete payrollDirectory;
 }
 
 Person* Employee::getPerson()
@@ -40,16 +41,6 @@ void Employee::setPayPeriod(QString payPeriod)
     m_payPeriod = payPeriod;
 }
 
-Role* Employee::getRole()
-{
-    return m_role;
-}
-
-void Employee::setRole(Role* role)
-{
-    m_role = role;
-}
-
 double Employee::getWorkUnits()
 {
     return m_workUnits;
@@ -63,4 +54,14 @@ void Employee::setWorkUnits(double workUnits)
 PayrollDirectory* Employee::getPayrollDirectory()
 {
     return payrollDirectory;
+}
+
+QString Employee::getDepartment()
+{
+    return m_department;
+}
+
+void Employee::setDepartment(QString department)
+{
+    m_department = department;
 }

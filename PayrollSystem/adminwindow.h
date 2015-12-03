@@ -21,6 +21,7 @@ public slots:
     void loadBtnClicked();
     void refreshBtnClicked();
     void exportBtnClicked();
+    void addEmpBtnClicked();
 
 private:
     Ui::AdminWindow *ui;
