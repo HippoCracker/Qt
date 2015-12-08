@@ -35,8 +35,10 @@ private:
     Employee *employee;
     QDate startDate;
     QDate endDate;
+    QSet<QDate> *holidaySet;
 
     void init();
+    bool isHoliday(QDate* date);
     void displayPayrolls();
     void displayDailyRecord();
     void enableRecordsUI(bool isEnabled);

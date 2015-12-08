@@ -57,6 +57,11 @@
      <string/>
     </property>
    </column>
+   <column>
+    <property name="text">
+     <string/>
+    </property>
+   </column>
   </widget>
   <widget class="QPushButton" name="backBtn">
    <property name="geometry">
@@ -231,20 +236,20 @@
     <rect>
      <x>160</x>
      <y>390</y>
-     <width>396</width>
-     <height>23</height>
+     <width>401</width>
+     <height>31</height>
     </rect>
    </property>
    <layout class="QHBoxLayout" name="horizontalLayout_2">
     <item>
-     <widget class="QLabel" name="label_7">
+     <widget class="QLabel" name="label_8">
       <property name="text">
-       <string>Work Units:</string>
+       <string>Salary Per Unit:</string>
       </property>
      </widget>
     </item>
     <item>
-     <widget class="QLineEdit" name="workUnitsTxt"/>
+     <widget class="QLineEdit" name="salaryPerUnitTxt"/>
     </item>
     <item>
      <spacer name="verticalSpacer_5">
@@ -260,14 +265,14 @@
      </spacer>
     </item>
     <item>
-     <widget class="QLabel" name="label_8">
+     <widget class="QLabel" name="label_7">
       <property name="text">
-       <string>Salary Per Unit:</string>
+       <string>Bonus:</string>
       </property>
      </widget>
     </item>
     <item>
-     <widget class="QLineEdit" name="salaryPerUnitTxt"/>
+     <widget class="QDoubleSpinBox" name="bonusSpin"/>
     </item>
    </layout>
   </widget>

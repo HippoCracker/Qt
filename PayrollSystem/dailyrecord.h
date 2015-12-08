@@ -11,17 +11,20 @@ public:
 
     int getId();
 
-    QDate* getDate();
-    void setDate(QDate* d);
+    QDate getDate();
+    void setDate(QDate d);
 
     bool getIsPay();
     void setIsPay(bool flag);
 
-    QTime* getStartTime();
-    void setStartTime(QTime* dateTime);
+    QTime getStartTime();
+    void setStartTime(QTime dateTime);
 
-    QTime* getEndTime();
-    void setEndTime(QTime* dateTime);
+    QTime getEndTime();
+    void setEndTime(QTime dateTime);
+
+    double getBonus();
+    void setBonus(double b);
 
     double getWorkHours();
 
@@ -30,9 +33,10 @@ private:
     static int count;
 
     int id;
-    QTime* startTime;
-    QTime* endTime;
-    QDate* date;
+    QTime startTime;
+    QTime endTime;
+    QDate date;
+    double bonus;
     bool isPay;
 };
 

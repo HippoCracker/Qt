@@ -7,6 +7,7 @@
 ViewEmployeeDialog::ViewEmployeeDialog(QWidget *parent, Employee *e) :
     QDialog(parent),
     ui(new Ui::ViewEmployeeDialog),
+    holidaySet(new QSet<QDate>()),
     employee(e)
 {
 
@@ -17,6 +18,8 @@ ViewEmployeeDialog::ViewEmployeeDialog(QWidget *parent, Employee *e) :
                               employee->getPerson()->getLastName());
     ui->payPeriodLabel->setText(employee->getPayPeriod());
     ui->roleLabel->setText(employee->getPerson()->getRole());
+
+    ui->bonusSpin->setMinimum(1.0);
 
     QString salaryPerUnit = QString::number(employee->getSalaryPerUnit());
     ui->salaryPerUnitTxt->setText(salaryPerUnit);
@@ -39,6 +42,7 @@ ViewEmployeeDialog::ViewEmployeeDialog(QWidget *parent, Employee *e) :
 ViewEmployeeDialog::~ViewEmployeeDialog()
 {
     delete ui;
+    delete holidaySet;
 }
 
 void ViewEmployeeDialog::refreshTable(QString model)
@@ -52,16 +56,17 @@ void ViewEmployeeDialog::refreshTable(QString model)
 
 void ViewEmployeeDialog::addBtnClicked()
 {
-    QString workUnits = ui->workUnitsTxt->text();
     QString salaryPerUnit = ui->salaryPerUnitTxt->text();
     QTime startTime = ui->startTimeEdit->time();
     QTime endTime = ui->endTimeEdit->time();
+    double bonus = ui->bonusSpin->value();
 
     DailyRecordCatalog *dailyRecordCatalog = employee->getDailyRecordCatalog();
     DailyRecord* dailyRecord = dailyRecordCatalog->createDailyRecord();
-    dailyRecord->setDate(&startDate);
-    dailyRecord->setStartTime(&startTime);
-    dailyRecord->setEndTime(&endTime);
+    dailyRecord->setDate(startDate);
+    dailyRecord->setStartTime(startTime);
+    dailyRecord->setEndTime(endTime);
+    dailyRecord->setBonus(bonus);
     dailyRecord->setIsPay(false);
 
     displayDailyRecord();
@@ -111,12 +116,13 @@ void ViewEmployeeDialog::displayDailyRecord()
 
         double hours = dailyRecord->getWorkHours();
         double salaryPerUnit = employee->getSalaryPerUnit();
-        double totalSalary = hours * salaryPerUnit;
+        double bonus = dailyRecord->getBonus();
+        double totalSalary = hours * salaryPerUnit * bonus;
 
         QTableWidgetItem *id = new QTableWidgetItem(QString::number(dailyRecord->getId()));
-        QTableWidgetItem *date = new QTableWidgetItem(dailyRecord->getDate()->toString());
-        QTableWidgetItem *startTime = new QTableWidgetItem(dailyRecord->getStartTime()->toString());
-        QTableWidgetItem *endTime = new QTableWidgetItem(dailyRecord->getEndTime()->toString());
+        QTableWidgetItem *date = new QTableWidgetItem(dailyRecord->getDate().toString());
+        QTableWidgetItem *startTime = new QTableWidgetItem(dailyRecord->getStartTime().toString());
+        QTableWidgetItem *endTime = new QTableWidgetItem(dailyRecord->getEndTime().toString());
         QTableWidgetItem *workUnits = new QTableWidgetItem(QString::number(hours));
         QTableWidgetItem *total = new QTableWidgetItem(QString::number(totalSalary));
         QTableWidgetItem *isPay = new QTableWidgetItem(dailyRecord->getIsPay() ? "Yes" : "No");
@@ -178,7 +184,7 @@ void ViewEmployeeDialog::makePayment()
             dailyRecord->setIsPay(true);
         }
         generatePayroll(payRecords);
-        displayDailyRecord();
+        displayPayrolls();
     }
 }
 
@@ -190,12 +196,11 @@ void ViewEmployeeDialog::generatePayroll(vector<DailyRecord*>* records)
 
     PayrollDirectory* payrollDirectory = employee->getPayrollDirectory();
     Payroll *payroll = payrollDirectory->createPayroll();
-    payroll->setStartDate(*(start->getDate()));
-    payroll->setEndDate(*(end->getDate()));
+    payroll->setStartDate(start->getDate());
+    payroll->setEndDate(end->getDate());
     payroll->setSalaryPerUnit(employee->getSalaryPerUnit());
     payroll->setWorkUnits(workUnits);
 
-    displayPayrolls();
 }
 
 double ViewEmployeeDialog::getWorkUnitsByDailyRecords(vector<DailyRecord*>* records)
@@ -203,7 +208,7 @@ double ViewEmployeeDialog::getWorkUnitsByDailyRecords(vector<DailyRecord*>* reco
     double units = 0;
     for (int i = 0; i < records->size(); i++) {
         DailyRecord *dailyRecord = records->at(i);
-        units += dailyRecord->getWorkHours();
+        units += dailyRecord->getWorkHours() * dailyRecord->getBonus();
     }
     return units;
 }
@@ -213,9 +218,9 @@ DailyRecord* ViewEmployeeDialog::findNewestRecord(vector<DailyRecord *> *records
     DailyRecord* newest = records->at(0);
     for (int i = 1; i < records->size(); i++) {
         DailyRecord* record = records->at(i);
-        QDate *recordDate = record->getDate();
-        QDate *newestDate = newest->getDate();
-        if ((*recordDate).operator >(*newestDate)) {
+        QDate recordDate = record->getDate();
+        QDate newestDate = newest->getDate();
+        if (recordDate.operator >(newestDate)) {
             newest = record;
         }
     }
@@ -227,9 +232,9 @@ DailyRecord* ViewEmployeeDialog::findOldestRecord(vector<DailyRecord *> *records
     DailyRecord* oldest = records->at(0);
     for (int i = 1; i < records->size(); i++) {
         DailyRecord* record = records->at(i);
-        QDate *recordDate = record->getDate();
-        QDate *oldestDate = oldest->getDate();
-        if ((*recordDate).operator <(*oldestDate)) {
+        QDate recordDate = record->getDate();
+        QDate oldestDate = oldest->getDate();
+        if (recordDate.operator <(oldestDate)) {
             oldest = record;
         }
     }
@@ -246,6 +251,23 @@ void ViewEmployeeDialog::getStartDate()
     startDate = ui->startCalendar->selectedDate();
     ui->startDateTxt->setText(startDate.toString());
     ui->startCalendar->hide();
+
+    if (isHoliday(&startDate)) {
+        ui->bonusSpin->setMinimum(1.5);
+        ui->bonusSpin->setValue(1.5);
+    } else {
+        ui->bonusSpin->setMinimum(1);
+        ui->bonusSpin->setValue(1);
+    }
+}
+
+bool ViewEmployeeDialog::isHoliday(QDate* date)
+{
+    int day = date->dayOfWeek();
+    if (day == 6 || day == 7 || holidaySet->contains(*date)) {
+        return true;
+    }
+    return false;
 }
 
 void ViewEmployeeDialog::loadBtnClicked()
@@ -285,5 +307,12 @@ void ViewEmployeeDialog::init()
 {
     ui->displayCombo->insertItem(0, "Payroll");
     ui->displayCombo->insertItem(1, "Daily Record");
+
+    holidaySet->insert(QDate(2015, 12, 24));
+    holidaySet->insert(QDate(2015, 12, 25));
+    holidaySet->insert(QDate(2015, 12, 26));
+    holidaySet->insert(QDate(2016, 1, 1));
+    holidaySet->insert(QDate(2016, 6, 4));
+
 }
 
