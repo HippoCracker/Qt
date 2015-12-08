@@ -16,7 +16,6 @@ public:
     Payroll* createPayroll();
     void deletePayroll(Payroll* payroll);
 
-
 private:
     vector<Payroll*> *payrollList;
 };

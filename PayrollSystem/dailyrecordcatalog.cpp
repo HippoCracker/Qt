@@ -30,6 +30,16 @@ vector<DailyRecord*>* DailyRecordCatalog::getDailyRecordList()
     return dailyRecordList;
 }
 
+DailyRecord* DailyRecordCatalog::getDailyRecordById(int id)
+{
+    for (int i = 0; i < dailyRecordList->size(); i++) {
+        DailyRecord* dailyRecord = dailyRecordList->at(i);
+        if (dailyRecord->getId() == id) {
+            return dailyRecord;
+        }
+    }
+}
+
 //vector<DailyRecord*>* DailyRecordCatalog::getDailyRecordsByDates(QDate start, QDate end)
 //{
 //    std::sort(dailyRecordList->begin(), dailyRecordList->end(), compare);

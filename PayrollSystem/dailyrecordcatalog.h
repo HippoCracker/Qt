@@ -14,6 +14,7 @@ public:
 
     DailyRecord* createDailyRecord();
     vector<DailyRecord*>* getDailyRecordList();
+    DailyRecord* getDailyRecordById(int id);
 
 //    vector<DailyRecord*>* getDailyRecordsByDates(QDate start, QDate end);
 

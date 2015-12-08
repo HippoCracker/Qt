@@ -31,6 +31,7 @@ void CvsFileReader::readToEmployeeDirectory(EmployeeDirectory* employeeDirectory
         employee->setPayPeriod(items.at(6));
         employee->setSalaryPerUnit(items.at(7).toDouble());
     }
+    file.close();
 }
 
 void CvsFileReader::readToDailyRecordCatalog(DailyRecordCatalog* dailyRecordCatalog, QString dir)
@@ -52,10 +53,15 @@ void CvsFileReader::readToDailyRecordCatalog(DailyRecordCatalog* dailyRecordCata
         int endHour = items.at(5).toInt();
         int endMin = items.at(6).toInt();
 
+        bool isPay = (items.at(7) == "true" ? true : false);
+
         DailyRecord *dailyRecord = dailyRecordCatalog->createDailyRecord();
 
         dailyRecord->setDate(new QDate(year, month, day));
         dailyRecord->setStartTime(new QTime(startHour, startMin));
         dailyRecord->setEndTime(new QTime(endHour, endMin));
+        dailyRecord->setIsPay(isPay);
     }
+
+    file.close();
 }

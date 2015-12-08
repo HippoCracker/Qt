@@ -1,8 +1,15 @@
 #include "dailyrecord.h"
 
+int DailyRecord::count = 0;
+
 DailyRecord::DailyRecord()
 {
+    id = count++;
+}
 
+int DailyRecord::getId()
+{
+    return id;
 }
 
 QDate* DailyRecord::getDate()
@@ -13,6 +20,16 @@ QDate* DailyRecord::getDate()
 void DailyRecord::setDate(QDate* d)
 {
     date = d;
+}
+
+bool DailyRecord::getIsPay()
+{
+    return isPay;
+}
+
+void DailyRecord::setIsPay(bool flag)
+{
+    isPay = flag;
 }
 
 QTime* DailyRecord::getStartTime()

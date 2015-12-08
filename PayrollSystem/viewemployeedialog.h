@@ -16,6 +16,7 @@ public:
     explicit ViewEmployeeDialog(QWidget *parent = 0, Employee *e = 0);
     ~ViewEmployeeDialog();
 
+
 public slots:
     void addBtnClicked();
     void startDateTxtFocused();
@@ -26,6 +27,7 @@ public slots:
     void exportBtnClicked();
     void getLoadDirectory(QString);
     void getExportDirectory(QString);
+    void makePayment();
 
 
 private:
@@ -38,6 +40,10 @@ private:
     void displayPayrolls();
     void displayDailyRecord();
     void enableRecordsUI(bool isEnabled);
+    void generatePayroll(vector<DailyRecord*>* records);
+    double getWorkUnitsByDailyRecords(vector<DailyRecord*>* records);
+    DailyRecord* findNewestRecord(vector<DailyRecord*>* records);
+    DailyRecord* findOldestRecord(vector<DailyRecord*>* records);
 };
 
 #endif // VIEWEMPLOYEEDIALOG_H

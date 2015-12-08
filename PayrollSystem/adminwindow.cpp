@@ -112,8 +112,6 @@ void AdminWindow::loadBtnClicked()
 
 void AdminWindow::getLoadDirectory(QString dir)
 {
-    QString directory = dir;
-
     CvsFileReader fileReader;
     fileReader.readToEmployeeDirectory(employeeDirectory, dir);
 }
@@ -132,5 +130,6 @@ void AdminWindow::exportBtnClicked()
 
 void AdminWindow::getExportDirectory(QString dir)
 {
-    QString directory = dir;
+    CvsFileWriter fileWritter;
+    fileWritter.writeEmployeesToFile(employeeDirectory, dir);
 }

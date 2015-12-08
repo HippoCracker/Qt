@@ -9,8 +9,13 @@ public:
     DailyRecord();
     ~DailyRecord();
 
+    int getId();
+
     QDate* getDate();
     void setDate(QDate* d);
+
+    bool getIsPay();
+    void setIsPay(bool flag);
 
     QTime* getStartTime();
     void setStartTime(QTime* dateTime);
@@ -22,9 +27,13 @@ public:
 
 
 private:
+    static int count;
+
+    int id;
     QTime* startTime;
     QTime* endTime;
     QDate* date;
+    bool isPay;
 };
 
 #endif // DAILYRECORD_H
