@@ -22,11 +22,13 @@ public slots:
     void refreshBtnClicked();
     void exportBtnClicked();
     void addEmpBtnClicked();
+    void refreshTable();
+    void getLoadDirectory(QString dir);
+    void getExportDirectory(QString dir);
 
 private:
     Ui::AdminWindow *ui;
     EmployeeDirectory *employeeDirectory;
-    void refreshTable();
 };
 
 #endif // ADMINWINDOW_H

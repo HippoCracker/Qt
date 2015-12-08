@@ -19,10 +19,14 @@ public:
 public slots:
     void addBtnClicked();
     void startDateTxtFocused();
-    void endDateTxtFocused();
     void getStartDate();
-    void getEndDate();
     void back();
+    void refreshTable(QString model);
+    void loadBtnClicked();
+    void exportBtnClicked();
+    void getLoadDirectory(QString);
+    void getExportDirectory(QString);
+
 
 private:
     Ui::ViewEmployeeDialog *ui;
@@ -30,8 +34,10 @@ private:
     QDate startDate;
     QDate endDate;
 
-    void refreshTable();
-
+    void init();
+    void displayPayrolls();
+    void displayDailyRecord();
+    void enableRecordsUI(bool isEnabled);
 };
 
 #endif // VIEWEMPLOYEEDIALOG_H

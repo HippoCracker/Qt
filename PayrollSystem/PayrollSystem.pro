@@ -26,14 +26,18 @@ SOURCES += main.cpp\
     adminrole.cpp \
     adminwindow.cpp \
     viewemployeedialog.cpp \
-    exportdirectorydialog.cpp \
     employeewindow.cpp \
     logindialog.cpp \
     staff.cpp \
     executive.cpp \
     volunteer.cpp \
     personfactory.cpp \
-    addempdialog.cpp
+    addempdialog.cpp \
+    dailyrecord.cpp \
+    dailyrecordcatalog.cpp \
+    directorydialog.cpp \
+    cvsfilereader.cpp \
+    cvsfilewriter.cpp
 
 HEADERS  += mainwindow.h \
     person.h \
@@ -49,19 +53,23 @@ HEADERS  += mainwindow.h \
     adminrole.h \
     adminwindow.h \
     viewemployeedialog.h \
-    exportdirectorydialog.h \
     employeewindow.h \
     logindialog.h \
     staff.h \
     executive.h \
     volunteer.h \
     personfactory.h \
-    addempdialog.h
+    addempdialog.h \
+    dailyrecord.h \
+    dailyrecordcatalog.h \
+    directorydialog.h \
+    cvsfilereader.h \
+    cvsfilewriter.h
 
 FORMS    += mainwindow.ui \
     adminwindow.ui \
     viewemployeedialog.ui \
-    exportdirectorydialog.ui \
     employeewindow.ui \
     logindialog.ui \
-    addempdialog.ui
+    addempdialog.ui \
+    directorydialog.ui

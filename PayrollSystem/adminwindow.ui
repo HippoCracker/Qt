@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>600</width>
-    <height>400</height>
+    <width>692</width>
+    <height>510</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -17,10 +17,10 @@
    <widget class="QTableWidget" name="employeeTable">
     <property name="geometry">
      <rect>
-      <x>60</x>
-      <y>90</y>
-      <width>481</width>
-      <height>191</height>
+      <x>40</x>
+      <y>130</y>
+      <width>621</width>
+      <height>221</height>
      </rect>
     </property>
     <column>
@@ -52,8 +52,8 @@
    <widget class="QLabel" name="banner">
     <property name="geometry">
      <rect>
-      <x>110</x>
-      <y>10</y>
+      <x>170</x>
+      <y>30</y>
       <width>381</width>
       <height>31</height>
      </rect>
@@ -73,8 +73,8 @@
    <widget class="QPushButton" name="viewBtn">
     <property name="geometry">
      <rect>
-      <x>410</x>
-      <y>310</y>
+      <x>470</x>
+      <y>410</y>
       <width>113</width>
       <height>32</height>
      </rect>
@@ -86,8 +86,8 @@
    <widget class="QPushButton" name="exportBtn">
     <property name="geometry">
      <rect>
-      <x>250</x>
-      <y>310</y>
+      <x>310</x>
+      <y>410</y>
       <width>113</width>
       <height>32</height>
      </rect>
@@ -99,8 +99,8 @@
    <widget class="QPushButton" name="loadBtn">
     <property name="geometry">
      <rect>
-      <x>70</x>
-      <y>310</y>
+      <x>130</x>
+      <y>410</y>
       <width>113</width>
       <height>32</height>
      </rect>
@@ -112,8 +112,8 @@
    <widget class="QPushButton" name="refreshBtn">
     <property name="geometry">
      <rect>
-      <x>60</x>
-      <y>50</y>
+      <x>120</x>
+      <y>80</y>
       <width>113</width>
       <height>32</height>
      </rect>
@@ -125,8 +125,8 @@
    <widget class="QLabel" name="errorLabel">
     <property name="geometry">
      <rect>
-      <x>60</x>
-      <y>290</y>
+      <x>120</x>
+      <y>370</y>
       <width>291</width>
       <height>20</height>
      </rect>
@@ -138,8 +138,8 @@
    <widget class="QPushButton" name="addEmpBtn">
     <property name="geometry">
      <rect>
-      <x>430</x>
-      <y>50</y>
+      <x>490</x>
+      <y>80</y>
       <width>113</width>
       <height>32</height>
      </rect>
@@ -154,7 +154,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>600</width>
+     <width>692</width>
      <height>22</height>
     </rect>
    </property>

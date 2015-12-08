@@ -3,12 +3,14 @@
 Employee::Employee()
 {
     payrollDirectory = new PayrollDirectory();
+    dailyRecordCatalog = new DailyRecordCatalog();
 }
 
 Employee::~Employee()
 {
     delete m_person;
     delete payrollDirectory;
+    delete dailyRecordCatalog;
 }
 
 Person* Employee::getPerson()
@@ -19,6 +21,11 @@ Person* Employee::getPerson()
 void Employee::setPerson(Person* person)
 {
     m_person = person;
+}
+
+DailyRecordCatalog* Employee::getDailyRecordCatalog()
+{
+    return dailyRecordCatalog;
 }
 
 double Employee::getSalaryPerUnit()

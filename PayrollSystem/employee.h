@@ -4,6 +4,7 @@
 #include "Person.h"
 #include "payrolldirectory.h"
 #include "role.h"
+#include "dailyrecordcatalog.h"
 
 class Employee
 {
@@ -28,6 +29,8 @@ public:
 
     PayrollDirectory* getPayrollDirectory();
 
+    DailyRecordCatalog* getDailyRecordCatalog();
+
 private:
     Person* m_person;
     double m_salaryPerUnit;
@@ -35,6 +38,7 @@ private:
     QString m_payPeriod;
     QString m_department;
     PayrollDirectory *payrollDirectory;
+    DailyRecordCatalog *dailyRecordCatalog;
 };
 
 #endif // EMPLOYEE_H

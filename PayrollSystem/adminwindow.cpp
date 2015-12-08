@@ -5,6 +5,9 @@
 #include "employeerole.h"
 #include "employee.h"
 #include "student.h"
+#include "directorydialog.h"
+#include "cvsfilereader.h"
+#include "cvsfilewriter.h"
 
 AdminWindow::AdminWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -26,11 +29,7 @@ AdminWindow::AdminWindow(QWidget *parent) :
     employee->setPerson(person);
 
     ui->errorLabel->hide();
-    ui->employeeTable->setHorizontalHeaderLabels(QStringList() << "ID"
-                                                 << "First Name"
-                                                 << "Last Name"
-                                                 << "Pay Period"
-                                                 << "Role");
+
 
     connect(ui->viewBtn, SIGNAL(clicked(bool)), this, SLOT(viewBtnClicked()));
     connect(ui->loadBtn, SIGNAL(clicked(bool)), this, SLOT(loadBtnClicked()));
@@ -67,6 +66,12 @@ void AdminWindow::refreshTable()
         ui->employeeTable->setItem(i, 3, payPeriod);
         ui->employeeTable->setItem(i, 4, role);
     }
+
+    ui->employeeTable->setHorizontalHeaderLabels(QStringList() << "ID"
+                                                 << "First Name"
+                                                 << "Last Name"
+                                                 << "Pay Period"
+                                                 << "Role");
 }
 
 void AdminWindow::viewBtnClicked()
@@ -77,9 +82,12 @@ void AdminWindow::viewBtnClicked()
         QModelIndexList indexList = selectModel->selectedRows();
         QTableWidgetItem *item = ui->employeeTable->item(indexList.at(0).row(), 0);
 
+
         int id = item->text().toInt();
 
         Employee *employee = employeeDirectory->findEmployeeById(id);
+
+
 
         ViewEmployeeDialog viewEmployeeDialog(0, employee);
         viewEmployeeDialog.exec();
@@ -97,7 +105,17 @@ void AdminWindow::addEmpBtnClicked()
 
 void AdminWindow::loadBtnClicked()
 {
+    DirectoryDialog directoryDialog(this);
+    connect(&directoryDialog, SIGNAL(output(QString)), this, SLOT(getLoadDirectory(QString)));
+    directoryDialog.exec();
+}
 
+void AdminWindow::getLoadDirectory(QString dir)
+{
+    QString directory = dir;
+
+    CvsFileReader fileReader;
+    fileReader.readToEmployeeDirectory(employeeDirectory, dir);
 }
 
 void AdminWindow::refreshBtnClicked()
@@ -107,5 +125,12 @@ void AdminWindow::refreshBtnClicked()
 
 void AdminWindow::exportBtnClicked()
 {
+    DirectoryDialog directoryDialog(this);
+    connect(&directoryDialog, SIGNAL(output(QString)), this, SLOT(getExportDirectory(QString)));
+    directoryDialog.exec();
+}
 
+void AdminWindow::getExportDirectory(QString dir)
+{
+    QString directory = dir;
 }

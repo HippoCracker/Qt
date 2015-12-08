@@ -1,6 +1,8 @@
 #include "addempdialog.h"
 #include "ui_addempdialog.h"
 #include "personfactory.h"
+#include "adminwindow.h"
+#include <iostream>
 
 AddEmpDialog::AddEmpDialog(QWidget *parent, EmployeeDirectory *ed) :
     QDialog(parent),
@@ -28,8 +30,9 @@ void AddEmpDialog::createBtnClicked()
     QString phone = ui->phoneTxt->text();
     QString department = ui->departmentTxt->text();
     double salaryPerUnit = ui->salaryPerUnitTxt->text().toDouble();
-    QString role = ui->roleCombo->itemData(ui->roleCombo->currentIndex()).toString();
-    QString payPeriod = ui->payPeriodCombo->itemData(ui->payPeriodCombo->currentIndex()).toString();
+    QString role = ui->roleCombo->currentText();
+    QString payPeriod = ui->payPeriodCombo->currentText();
+
 
     PersonFactory personFactory;
     Person *person = personFactory.getPerson(role);
@@ -38,6 +41,7 @@ void AddEmpDialog::createBtnClicked()
     person->setAge(age);
     person->setPhoneNum(phone);
 
+
     Employee *employee = employeeDirectory->createEmployee();
     employee->setPerson(person);
     employee->setDepartment(department);
@@ -45,7 +49,7 @@ void AddEmpDialog::createBtnClicked()
     employee->setSalaryPerUnit(salaryPerUnit);
     employee->setPayPeriod(payPeriod);
 
-
+    QDialog::accept();
 }
 
 void AddEmpDialog::backBtnClicked()
