@@ -14,6 +14,15 @@ void CvsFileWriter::writeEmployeesToFile(EmployeeDirectory* employeeDirectory, Q
     if (file.open(QIODevice::ReadWrite)) {
         QTextStream stream(&file);
 
+        stream << "First Name"      << ","
+               << "Last Name"       << ","
+               << "Role"            << ","
+               << "Age"             << ","
+               << "Phone Number"    << ","
+               << "Department"      << ","
+               << "Pay Period"      << ","
+               << "Salary Per Unit" << endl;
+
         vector<Employee*>* employeeList = employeeDirectory->getEmployeeList();
 
         for (int i = 0; i < employeeList->size(); i++) {
@@ -39,6 +48,11 @@ void CvsFileWriter::writePayrollsToFile(PayrollDirectory* payrollDirectory, QStr
     QFile file(dir);
     if (file.open(QIODevice::ReadWrite)) {
         QTextStream stream(&file);
+
+        stream << "Start Date"   << ","
+               << "End Date"     << ","
+               << "Work Units"   << ","
+               << "Total Salary" << endl;
 
         vector<Payroll*>* payrollList = payrollDirectory->getPayrollList();
 
